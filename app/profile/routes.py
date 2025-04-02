@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint
-about = Blueprint('profile', __name__)
+profile = Blueprint('profile', __name__)
 
-@about.route('/profile')
+@profile.route('/profile')
 def page():
-  return render_template('about.html')
+  return render_template('profile.html')
