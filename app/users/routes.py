@@ -4,7 +4,7 @@ users=Blueprint('users',__name__)
 
 @users.route('/login')
 def login():
-  name='Mario'
+  name='Jo'
   return render_template('users/login.html', title='login', name=name)
 
 @users.route('/register')
