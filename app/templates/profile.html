@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='./styles/profile.css')}}">
+
+<div class="container">
+    <h1>My profile</h1>
+    <a href="{{url_for('calculator.page')}}"><button type="button" class="btn btn-primary">Add data</button></a>    
+
+    <div class="data">
+        <div class="box">
+            <canvas id="emissions_by_transport"></canvas>
+        </div>
+        <div class="box">
+            <canvas id="over_time_emissions"></canvas> 
+        </div>
+    </div>
+
+
+</div>
+
+
+
+{% endblock content %}

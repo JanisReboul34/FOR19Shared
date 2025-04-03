@@ -1,0 +1,21 @@
+.box {
+    flex: 1;
+    background: red;
+    color: black;
+    border-radius: 10px;
+    margin: 20px 10px;
+    padding: 15px 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+body {
+    background-image: url(../images/homebg.JPG);
+    width: 100vw;
+    height: 100vh;
+}
