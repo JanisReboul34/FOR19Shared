@@ -16,7 +16,6 @@ def register():
       user = User(username=form.username.data, email=form.email.data, password=user_hashed_password)
       db.session.add(user)
       db.session.commit()
-      flash('Your account has been created!', 'success')
       return redirect(url_for('users.login'))
   return render_template('users/register.html', title='register', form=form)
 
@@ -30,7 +29,6 @@ def login():
     if user and bcrypt.check_password_hash(user.password, form.password.data):
         login_user(user, remember=form.remember.data)
         next_page = request.args.get('next')
-        flash('You are logged in!', 'success')
         return redirect(next_page) if next_page else redirect(url_for('home.page'))
     else:
         flash('Login Unsuccessful. Please check your email and password!', 'danger') 
