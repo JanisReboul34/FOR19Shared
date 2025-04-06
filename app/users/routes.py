@@ -1,5 +1,6 @@
 from flask import render_template, Blueprint, redirect, flash, url_for
 from app.users.forms import RegistrationForm, LoginForm
+from app.models import User
 
 users=Blueprint('users',__name__)
 
