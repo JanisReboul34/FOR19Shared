@@ -11,10 +11,12 @@ from app.home.routes import home
 from app.methodology.routes import methodology
 from app.calculator.routes import calculator
 from app.profile.routes import profile
+from app.users.routes import users
 
 application.register_blueprint(about)
 application.register_blueprint(home)
 application.register_blueprint(methodology)
 application.register_blueprint(calculator)
 application.register_blueprint(profile)
+application.register_blueprint(users)
 
