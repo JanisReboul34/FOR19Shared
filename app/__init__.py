@@ -11,7 +11,10 @@ application.config['SECRET_KEY'] = '9240d4b7a0f0f659e11c060f4825a51ecc3323cf2e99
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 application.config['SQLALCHEMY_BINDS'] ={'transport': 'sqlite:///transport.db'}
+
 db = SQLAlchemy(application)
+
+bcrypt = Bcrypt(application)
 
 from app.about.routes import about
 from app.home.routes import home
