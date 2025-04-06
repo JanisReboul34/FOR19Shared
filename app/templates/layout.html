@@ -29,6 +29,24 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {% if current_user.is_authenticated %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('calculator.page')}}">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('methodology.page')}}">Methodology</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('about.page')}}">About Us</a>
+                        </li>
+                    </ul>  
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{url_for('users.logout')}}">Logout</a>
+                        </li>
+                    </ul>
+                    {% else %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('calculator.page')}}">Calculator</a>
@@ -48,6 +66,7 @@
                             <a class="nav-link" href="{{url_for('users.register')}}">Register</a>
                         </li>
                     </ul>
+                    {% endif %}
                 </div>
             </div>
         </nav>
