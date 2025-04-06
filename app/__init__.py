@@ -8,7 +8,7 @@ application = Flask(__name__)
 
 # application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
 
-application.config['SECRET_KEY'] = '3oueqkfdfas8ruewqndr8ewrewrouewrere44554'
+application.config['SECRET_KEY'] = '9240d4b7a0f0f659e11c060f4825a51ecc3323cf2e99fdc4'
 
 from app.about.routes import about
 from app.home.routes import home
