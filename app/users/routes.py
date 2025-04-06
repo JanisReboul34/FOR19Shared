@@ -7,6 +7,8 @@ users=Blueprint('users',__name__)
 def register():
   form = RegistrationForm()
   if form.validate_on_submit():
+      flash('Your account has been created! Now you are able to Login!',
+            'succsess')
       return redirect(url_for('home.page'))
   return render_template('users/register.html', title='register', form=form)
 
