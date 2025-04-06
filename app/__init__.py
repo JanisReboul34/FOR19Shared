@@ -15,8 +15,8 @@ application.config['SQLALCHEMY_BINDS'] ={'transport': 'sqlite:///transport.db'}
 db = SQLAlchemy(application)
 bcrypt = Bcrypt(application)
 login_manager= LoginManager(application)
-login_manager.login_view='users.login' #Dette er ikke på DB_Final2?
-login_manager.login_message_category='info' #Dette er ikke på DB_Final2?
+login_manager.login_view='users.login'
+login_manager.login_message_category='info'
 
 from app.about.routes import about
 from app.home.routes import home
