@@ -2,11 +2,12 @@ from flask import render_template, Blueprint
 
 users=Blueprint('users',__name__)
 
-@users.route('/register')
+@users.route('/register', methods=['GET','POST'])
 def register():
   return render_template('users/register.html', title='register')
 
-@users.route('/login')
+@users.route('/login', methods=['GET','POST'])
 def login():
-  name='Mario'
-  return render_template('users/login.html', title='login', name=name)
+  return render_template('users/login.html', title='login')
+
+
