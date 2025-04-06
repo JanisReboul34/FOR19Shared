@@ -2,6 +2,7 @@ from flask import render_template, Blueprint, redirect, flash, url_for
 from app.users.forms import RegistrationForm, LoginForm
 from app.models import User
 from app import db, bcrypt
+from flask_login import login_user
 
 users=Blueprint('users',__name__)
 
@@ -21,7 +22,9 @@ def register():
 def login():
   form = LoginForm()
   if form.validate_on_submit():
-    if form.email.data == 'fjell@demo.com' and form.password.data == 'regn':
+    user = User.query.filter_by(email=form.email.data).first()
+    if user and bcrypt.check_password_hash(user.password, form.password.data):
+        login_user(user, remember=form.remember.data)
         flash('You have logged in! Now, you can start to use carbon app!', 'success')
         return redirect(url_for('home.page'))
     else:
