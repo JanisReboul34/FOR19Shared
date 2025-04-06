@@ -1,5 +1,7 @@
 from flask import render_template, Blueprint
-home = Blueprint('home', __name__)
+from app.models import User, Transport
+
+home=Blueprint('home',__name__)
 
 @home.route('/')
 def page():
