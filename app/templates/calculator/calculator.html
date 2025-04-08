@@ -2,6 +2,10 @@
 {% block content %}
 
     <!-- Header -->
+     <Head>
+      <link rel="stylesheet" href="{{url_for('static', filename='./styles/calculator.css')}}">
+     </Head>
+
     <section class="section_header_calculator">
         <div class="container">
     
@@ -61,7 +65,7 @@
             <p>Please, enter your kilometers by using the car.
             </p>
             <div class="section_container_buttons_calculator_new_entry_main">
-              <a class="btn_ccalculator_new_entry_main" href="{{url_for('calculator.new_entry_car')}}">New Entry</a>
+              <a class="btn_calculator_new_entry_main" href="{{url_for('calculator.new_entry_car')}}">New Entry</a>
             </div> 
           </div>           
           <div class="box">
