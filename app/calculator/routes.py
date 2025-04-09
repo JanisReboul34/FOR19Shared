@@ -1,9 +1,9 @@
-from flask import render_template, Blueprint, request, redirect, url_for, flash
+from flask import render_template, Blueprint, request, redirect, url_for, flash, jsonify
 from app.models import Transport
 from app import db
 from datetime import timedelta, datetime
 from flask_login import login_required, current_user
-from app.calculator.forms import BusForm, CarForm, PlaneForm, FerryForm, MotorbikeForm, BicycleForm, WalkForm
+from app.calculator.forms import Form
 
 calculator=Blueprint('calculator',__name__)
 
@@ -27,20 +27,14 @@ efch4={'Bus':{'Diesel':2e-5,'CNG':2.5e-3,'Petrol':2e-5,'No Fossil Fuel':0},
     'Walk':{'No Fossil Fuel':0}}
 
 #Calculator, main page
-@calculator.route('/calculator')
+@calculator.route('/calculator', methods=['GET','POST'])
 @login_required
 def page():
-    return render_template('calculator/calculator.html', title='calculator')
-
-#New entry bus
-@calculator.route('/calculator/new_entry_bus', methods=['GET','POST'])
-@login_required
-def new_entry_bus():
-    form = BusForm()
+    form = Form()
     if form.validate_on_submit():
         kms = form.kms.data
         fuel = form.fuel_type.data
-        transport = 'Bus'
+        transport = form.method.data
         # kms = request.form['kms']
         # fuel = request.form['fuel_type']
 
@@ -56,163 +50,24 @@ def new_entry_bus():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_bus.html', title='new entry bus', form=form)
+    return render_template('calculator/calculator.html', title='New entry', form=form)
 
-#New entry car
-@calculator.route('/calculator/new_entry_car', methods=['GET','POST'])
-@login_required
-def new_entry_car():
-    form = CarForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Car'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
+@calculator.route('/get-items')
+def get_items():
+    method = request.args.get('method')
+    items_dict = {
+        'Bus': ['Diesel', 'CNG', 'Petrol', 'No Fossil Fuel'],
+        'Car': ['Petrol', 'Diesel', 'No Fossil Fuel'],
+        'Plane': ['Petrol'],
+        'Ferry': ['Diesel', 'CNG', 'No Fossil Fuel'],
+        'Motorbike': ['Petrol', 'No Fossil Fuel'],
+        'Scooter': ['Petrol', 'No Fossil Fuel'],
+        'Bicycle': ['No Fossil Fuel'],
+        'Walk': ['No Fossil Fuel']
+    }
+    items = items_dict.get(method, [])
+    return jsonify({'items': items})
 
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_car.html', title='new entry car', form=form)    
-
-#New entry plane
-@calculator.route('/calculator/new_entry_plane', methods=['GET','POST'])
-@login_required
-def new_entry_plane():
-    form = PlaneForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Plane'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
-
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_plane.html', title='new entry plane', form=form)  
-
-#New entry ferry
-@calculator.route('/calculator/new_entry_ferry', methods=['GET','POST'])
-@login_required
-def new_entry_ferry():
-    form = FerryForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Ferry'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
-
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_ferry.html', title='new entry ferry', form=form)     
-
-#New entry motorbike
-@calculator.route('/calculator/new_entry_motorbike', methods=['GET','POST'])
-@login_required
-def new_entry_motorbike():
-    form = MotorbikeForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Motorbike'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
-
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_motorbike.html', title='new entry motorbike', form=form) 
-
-#New entry bicycle
-@calculator.route('/calculator/new_entry_bicycle', methods=['GET','POST'])
-@login_required
-def new_entry_bicycle():
-    form = BicycleForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Bicycle'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
-
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_bicycle.html', title='new entry bicycle', form=form)
-
-#New entry walk
-@calculator.route('/calculator/new_entry_walk', methods=['GET','POST'])
-@login_required
-def new_entry_walk():
-    form = WalkForm()
-    if form.validate_on_submit():
-        kms = form.kms.data
-        fuel = form.fuel_type.data
-        transport = 'Walk'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
-
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
-
-        co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
-
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
-        db.session.add(emissions)
-        db.session.commit()
-        return redirect(url_for('calculator.your_data'))
-    return render_template('calculator/new_entry_walk.html', title='new entry walk', form=form)
 
 #Your data
 @calculator.route('/calculator/your_data')
