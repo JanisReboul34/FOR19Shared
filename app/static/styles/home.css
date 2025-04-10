@@ -1,16 +1,18 @@
 main {
-    display:flex;
-    background-image: url(../images/homebg.JPG);
+    background-image: url('../images/businessfornature-banner.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 100vh;
+    height: 105vh;
     width: 100%;
-    position: relative;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    color: #FF2E63;
-}
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    color: #000;
+    text-align: center;
+}  
 
 h1 {
     margin-top: 0;
@@ -18,5 +20,59 @@ h1 {
 
 .content {
     margin-top: 50px;
-    background-color: --bs-body-bg;
+    margin-bottom: 50px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #c5c8d9;
 }
+/* Two buttons on home page*/ 
+.custom-btn {
+    background-color: #568c63; /* green */
+    color: white;
+    border: white;
+    padding: 10px 30px;
+    border-radius: 100px;
+}
+.custom-btn2 {
+    background-color: #466fa6; /* blue */
+    color: white;
+    border: white;
+    padding: 10px 30px;
+    border-radius: 100px;
+}
+/* Color for the "Why should you care part"*/
+body {
+    background-color: #c5c8d9; 
+  }
+
+  /* making the transparent background*/ 
+  .hero-overlay {
+    background-color: rgba(86, 140, 99, 0.1); /* your #568c63 green with 40% opacity */
+    padding: 2rem;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+  }
+  
+  .btn-solid {
+    background-color: #568c63; /* solid green */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-solid:hover {
+    background-color: rgba(86, 140, 99, 0.4); /* lighter green (semi-transparent) */
+    color: #000; /* optional:*/
+}
+ 
+
+

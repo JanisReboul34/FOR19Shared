@@ -2,23 +2,32 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='./styles/home.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='./styles/home.css') }}">
 </head>
 
 <main>
-    <div class="container">
-        <h1>Carbon App</h1>
-        <p>Calculate your carbon footprint and learn how to reduce it!</p>
-        <a href="{{url_for('calculator.page')}}" class="btn btn-primary">Calculate</a>
-    </div>
+  <div class="hero-overlay">
+    <h1>Carbon App</h1>
+    <p>Calculate your carbon footprint and learn how to reduce it!</p>
+    <a href="{{ url_for('calculator.page') }}" class="btn-solid">Get started</a>
+  </div>
 </main>
-<div class="container">
-    <section class="content">
-        <h2>Why should you care?</h2>
-        <p>Climate change is a global issue that affects everyone. By reducing your carbon footprint, you can help
-            mitigate the effects of climate change and create a more sustainable future for all.</p>
-    </section>
-</div>
 
+<div class="container">
+  <section class="content">
+    <h2>Why should you care?</h2>
+    <br>
+    <p>Climate change is one of the most pressing challenges of our time, with far-reaching impacts on 
+        the environment, human health, and global economies. Rising temperatures, extreme weather events, and 
+        biodiversity loss are just some of the consequences already affecting communities around the world. 
+        But you have the power to make a difference. By taking responsibility for your carbon footprint, you can 
+        play an active role in slowing down climate change. Small, everyday actions, like choosing sustainable transport, 
+        reducing energy use, or eating more plant-based foods, can collectively lead to meaningful change. 
+        When individuals, businesses, and governments work together toward climate solutions, we can build a 
+        cleaner, healthier, and more sustainable future for everyone.</p>
+    <br>
+    <a href="{{ url_for('methodology.page') }}" class="btn custom-btn2">Read more about our app</a>
+  </section>
+</div>
 
 {% endblock content %}
