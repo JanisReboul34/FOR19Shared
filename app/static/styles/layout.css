@@ -127,16 +127,16 @@ h1 {
 }
 
 .navbar {
-    --bs-navbar-hover-color: #FF2E63;
-    --bs-navbar-brand-hover-color: #FF2E63;
-    background-color: #08D9D6;
+    --bs-navbar-hover-color: #ffff;
+    --bs-navbar-brand-hover-color: #ffff;
+    background-color: #568c63;
 }
 
 footer {
-    height: 80px;
+    height: 100px;
     margin-top: 20px;
-    margin-bottom: 0;
-    background-color: #08D9D6;
+    margin-bottom: 0px;
+    background-color: #568c63;
 }
 
 footer h5 {
@@ -144,6 +144,6 @@ footer h5 {
 }
 
 footer h5 a {
-    color: #FF2E63;
+    color: #000000;
     text-decoration: none;
 }

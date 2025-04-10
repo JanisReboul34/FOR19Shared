@@ -5,4 +5,46 @@
     margin: 0 auto;
     margin-top: 20px;
     display: block;
+    
 }
+
+body {
+    background-color: #c5c8d9; 
+
+}
+.card {
+    background-color: #466fa6;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .linkedin-btn {
+    background-color: #c5c8d9;
+    border: none;
+    color: #466fa6;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .linkedin-btn:hover {
+    background-color: #c5c8d9;
+    color: white;
+  }
+  
+  .github-btn {
+    background-color: #c5c8d9;
+    border: none;
+    color: #466fa6;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .github-btn:hover {
+    background-color: #c5c8d9;
+    color: white;
+  } 
