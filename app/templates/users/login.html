@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='./styles/user.css')}}">
+</head>
+
 <section class="register_section_css">
   <div class="container">
           <div class="box">
@@ -53,7 +58,7 @@
                       </fieldset>
                       </br>
                       <div class="form-group">
-                          {{ form.submit(class="btn btn-outline-info") }}
+                          {{ form.submit(class="btn login-btn") }}
                       </div>
               </form>
               </br>
