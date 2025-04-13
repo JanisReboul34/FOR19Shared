@@ -1,16 +1,14 @@
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f9f9;
-    margin: 20;
-    padding: 20px;
   }
 
-  .container {
+  .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   /* box titres */
@@ -46,7 +44,6 @@ body {
 
   header {
     text-align: center;
-    padding: 30px 10px;
     background-color: #f4f9f9;
     color: rgb(0, 0, 0);
     border-radius: 12px;
@@ -57,7 +54,7 @@ body {
     body {
       padding: 10px;
     }
-    .container {
+    .grid {
       grid-template-columns: 1fr;
     }
     .box {

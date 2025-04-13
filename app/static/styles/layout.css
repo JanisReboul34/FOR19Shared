@@ -138,6 +138,9 @@ footer {
     margin-bottom: 0px;
     background-color: #568c63;
 }
+footer p {
+    text-align: center;
+}
 
 footer h5 {
     padding-top: 20px;
