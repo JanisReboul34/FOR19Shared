@@ -143,6 +143,7 @@ footer {
     height: 100px;
     margin-bottom: 0px;
     background-color: #568c63;
+    text-align: center;
 }
 .push {
     height: 100px;
@@ -158,4 +159,8 @@ footer h5 {
 footer h5 a {
     color: #000000;
     text-decoration: none;
+}
+
+.footer p {
+    text-align: center;
 }

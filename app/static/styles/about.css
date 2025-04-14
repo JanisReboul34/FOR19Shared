@@ -9,14 +9,18 @@
 }
 
 body {
-    background-color: #c5c8d9; 
+    background-color: #c5c8d9;     
 
 }
+
+
 .card {
-    background-color: #466fa6;
-    color: #fff;
+    background-color: #fff;
+    color: solid black;
+    border: 2px solid #2e8b57;
     border-radius: 10px;
     overflow: hidden;
+    margin: 0px;
   }
   
   .linkedin-btn {

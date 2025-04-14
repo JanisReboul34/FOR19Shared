@@ -15,25 +15,23 @@
       <div class="box">
         <h1 style="font-size:55px;"><span class="text-logo"> Carbon App Calculator</span></h1>
         <p style="text-align:left;">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat dolores quos asperiores repellendus facilis
-          cum illo aperiam odit doloremque nostrum. Totam excepturi labore voluptatibus iusto sapiente quisquam
-          consectetur optio magnam voluptates omnis vel officia alias distinctio quas laborum reiciendis ratione
-          inventore veniam, cupiditate doloribus dolore, eius natus a. Magni inventore consequuntur voluptas
-          reprehenderit perferendis! Molestias aspernatur rem autem aut temporibus.
+          Welcome to your carbon emission calculator.
+        </p>  
+        <p style="text-align: left">
+          Please choose your mode of transportation from the seven categories below and enter the number of kilometers to travel.
+          By doing so, you can compare your emissions with other means of transport and see if you have reduced your carbon footprint. If not, you'll know what to do next time!
         </p>
         <div class="container_buttons_links_header_calculator">
           <div class="btn">
-            <a href="{{url_for('methodology.page')}}" class="btn btn-primary btn-lg mr-2" ,
-              style="background-color:#007bff;">Methodology</a>
+            <a href="{{url_for('methodology.page')}}" class="btn btn custom-btn2">Methodology</a>
           </div>
           <div class="btn">
-            <a href="{{url_for('calculator.your_data')}}" class="btn btn-primary btn-lg mr-2" ,
-              style="background-color:#007bff;">Your data</a>
+            <a href="{{url_for('calculator.your_data')}}" class="btn btn custom-btn2">Your data</a>
           </div>
         </div>
       </div>
       <div class="box">
-        <img src="{{url_for('static', filename='icons/calculator.svg')}}" width="325" height="325" alt="" />
+        <img src="{{url_for('static', filename='images/Logo_calculator.webp')}}" alt="Logo" />
       </div>
     </div>
 
@@ -50,12 +48,12 @@
 
         </div>
         <div class="box">
-          <div class="h1 mb-3" style="text-align: center;">
+          <div class="h1 mb-3" style="text-align: center; color:  #568c63;">
             <h3>Please, select your mean of conveyance in the boxes below</h3>
             <i class="fa-solid fa-leaf"></i>
           </div>
           <p class="centered">
-            Please, enter the number of kilometers.
+            Please, fill in these sections:
           </p>
           <form method="POST" action="">
             {{ form.csrf_token }}
