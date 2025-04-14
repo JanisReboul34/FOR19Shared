@@ -23,12 +23,10 @@
         </p>
         <div class="container_buttons_links_header_calculator">
           <div class="btn">
-            <a href="{{url_for('methodology.page')}}" class="btn btn-primary btn-lg mr-2" ,
-              style="background-color:#007bff;">Methodology</a>
+            <a href="{{url_for('methodology.page')}}" class="btn btn custom-btn2">Methodology</a>
           </div>
           <div class="btn">
-            <a href="{{url_for('calculator.your_data')}}" class="btn btn-primary btn-lg mr-2" ,
-              style="background-color:#007bff;">Your data</a>
+            <a href="{{url_for('calculator.your_data')}}" class="btn btn custom-btn2">Your data</a>
           </div>
         </div>
       </div>
@@ -55,7 +53,7 @@
             <i class="fa-solid fa-leaf"></i>
           </div>
           <p class="centered">
-            Please, fill in these sections.
+            Please, fill in these sections:
           </p>
           <form method="POST" action="">
             {{ form.csrf_token }}

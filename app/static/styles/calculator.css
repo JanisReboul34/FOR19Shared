@@ -33,6 +33,14 @@ h4 {
     text-align: left;
     font-weight: bold;
   }
+
+  .custom-btn2 {
+    background-color: #466fa6; /* blue */
+    color: white;
+    border: white;
+    padding: 10px 30px;
+    border-radius: 100px;
+}
   /* Section header */
   .section_header_calculator {
     background-color:#c5c8d9;
