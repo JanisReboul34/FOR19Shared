@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <div class="wrapper">
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid container">
@@ -71,7 +72,11 @@
             </div>
         </nav>
     </header>
+    
         {% block content %} {% endblock %}
+        <div class="push"></div>
+    </div>
+        
     
     <footer>
         <h5><a href="#" >Take me to the TOP!</a></h5>
