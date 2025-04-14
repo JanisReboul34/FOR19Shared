@@ -139,6 +139,9 @@ footer {
     background-color: #568c63;
     text-align: center;
 }
+footer p {
+    text-align: center;
+}
 
 footer h5 {
     padding-top: 20px;

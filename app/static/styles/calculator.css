@@ -6,6 +6,9 @@ Carbon App, section 2 (header, boxes): #8badd9
 */
 
 /* Utilities  */
+body {
+  background-color: #c5c8d9;
+}
 p {
     margin: 10px 0;
     font-size: 18px;
