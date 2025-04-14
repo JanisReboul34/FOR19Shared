@@ -11,6 +11,7 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{url_for('static', filename='./styles/layout.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <title>Document</title>
 </head>
 
@@ -34,6 +35,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('calculator.page')}}">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('calculator.your_data')}}">Your Data</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('methodology.page')}}">Methodology</a>
