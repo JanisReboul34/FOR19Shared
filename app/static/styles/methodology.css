@@ -67,3 +67,19 @@ body {
   a.btn {
     margin-bottom: 20px; 
 }
+.btn-solid {
+  background-color: #568c63; /* solid green */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+.btn-solid:hover {
+  background-color: rgba(86, 140, 99, 0.4); /* lighter green (semi-transparent) */
+  color: #000; /* optional:*/
+}

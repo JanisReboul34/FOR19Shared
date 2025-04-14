@@ -73,6 +73,10 @@ body {
     background-color: rgba(86, 140, 99, 0.4); /* lighter green (semi-transparent) */
     color: #000; /* optional:*/
 }
+.custom-btn2 + .custom-btn2 {
+  margin-left: 20px;
+}
+
  
 
 

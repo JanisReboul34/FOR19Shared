@@ -48,3 +48,7 @@ body {
     background-color: #c5c8d9;
     color: white;
   } 
+
+  .linkedin-btn + .github-btn {
+    margin-left: 10px;
+  }
