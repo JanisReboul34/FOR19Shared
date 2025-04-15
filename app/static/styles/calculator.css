@@ -6,13 +6,13 @@ Carbon App, section 2 (header, boxes): #8badd9
 */
 
 /* Utilities  */
-body {
-  background-color: #c5c8d9;
-}
 p {
     margin: 10px 0;
     font-size: 18px;
   }
+body {
+  background: #c5c8d9;
+}
 
 img{
   align-items: start;
@@ -22,7 +22,7 @@ img{
   }
 
   h1 {
-    font-size: 55px;
+    font-size: 24px;
     color: #568c63;
     text-align: center;
     font-weight: bold;
@@ -41,14 +41,14 @@ h4 {
     padding: 10px 30px;
     border-radius: 100px;
 }
-
   /* Section header */
   .section_header_calculator {
     background-color:#c5c8d9;
   }
   .header_calculator {
     display: flex;  
-    align-items: start;
+    align-items: center;
+    text-align: center;
     background: #fff;
     border-radius: 15px;
     border: 2px solid#568c63;
@@ -56,14 +56,14 @@ h4 {
   }
   
   .header_calculator .box {
+    display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background: #fff;
     border-radius: 10px;
     margin: 20px 10px;
     padding: 15px 20px;
-    height: 300px; /* Choisis une hauteur fixe pour voir le comportement */
-    width: 300px;  /* Pareil pour la largeur */
   }
   
   .header_calculator .box img {
@@ -73,12 +73,16 @@ h4 {
   }
   
   .header_calculator .box:nth-of-type(1) {
-    height: 325px;
-    width: 800px;
+    flex-grow: 1;
   }
+  
   .header_calculator .box:nth-of-type(2) {
-    height: 325px;
-    width: 325px;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centre verticalement les éléments */
+    align-items: center;     /* centre horizontalement */
+    text-align: center;
   }
   .container_buttons_links_header_calculator {
     display: flex;
@@ -206,7 +210,7 @@ h4 {
   .table_main .container {
     display: flex;
     align-items: start;
-    justify-content: center;
+    justify-content: space-between;
   }
   .table_main .container .box {
     flex: 1;
@@ -241,47 +245,6 @@ h4 {
     text-align:left;
   }
   /*End container table_main*/
-/*Container two_emissions_graphs */
-.two_emissions_graphs {
-  display: flex;
-  background: #c5c8d9;
-  }  
-.two_emissions_graphs .container {
-  display: flex;
-  background: #c5c8d9;
-}
-.two_emissions_graphs .container {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-}
-.two_emissions_graphs .container .box {
-  flex: 1;
-  background: #c5c8d9;
-  border-radius: 2px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align:center;
-}  
-.two_emissions_graphs .container  .box:nth-of-type(1) {
-  flex-grow:1;
-  background: #568c63;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align:center;
-}  
-.two_emissions_graphs .container  .box:nth-of-type(2) {
-  flex-grow:1;
-  background: #568c63;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align:center;
-}  
-/*End container two_emissions_graphs*/
-
-
   /*Container main menu */
   .main_menu {
     display: flex;
