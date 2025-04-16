@@ -35,7 +35,7 @@
     <section class="two_emissions_graphs">
         <div class="container">
             <div class="box">
-                <canvas id="emissions_by_transport"></canvas>
+                    <canvas id="emissions_by_transport"></canvas>
             </div>
             <div class="box">
                 <canvas id="over_time_emissions"></canvas> 
@@ -57,7 +57,7 @@
 
     <!-- Table Section -->
     <section class="table_main">
-    <div class="container">
+    <div class="container table-responsive">
         <div class="box">
 
         </div>
@@ -150,7 +150,9 @@
     
                         elements: {
                             hitRadius: 3,
-                        }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
                 }
             })
 
@@ -172,7 +174,8 @@
                         }
                 ]
                 },                    
-                options: {}
+                options: {responsive: true,
+                    maintainAspectRatio: false,}
             });  
             
         // Kilometers
@@ -215,7 +218,9 @@
     
                         elements: {
                             hitRadius: 3,
-                        }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
                 }
             })
             
@@ -237,7 +242,8 @@
                         }
                 ]
                 },                    
-                options: {}
+                options: {responsive: true,
+                    maintainAspectRatio: false,}
             });   
 
         </script>
