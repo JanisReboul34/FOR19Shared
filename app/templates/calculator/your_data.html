@@ -80,8 +80,6 @@
                         <th scope="col">Transport</th>
                         <th scope="col">Fuel</th>
                         <th scope="col">Co2</th>
-                        <th scope="col">Ch4</th>
-                        <th scope="col">Total</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -94,8 +92,6 @@
                             <td>{{ entry.transport }}</td>
                             <td>{{ entry.fuel }}</td>
                             <td>{{ entry.co2 }}</td>
-                            <td>{{ entry.ch4 }}</td>
-                            <td>{{ entry.total }}</td>
                             <td><a href="{{ url_for('calculator.delete_emission', entry_id = entry.id) }}" class="btn btn-outline-danger btn-sm">Delete</a></td>
                         </tr>
                     {% endfor %}
@@ -124,11 +120,11 @@
         let emissions_by_transport_chart = new Chart(emissions_by_transport, {
                 type: 'pie',
                 data: {
-                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Walk'],
+                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train', 'Walk'],
                     datasets: [{
                         data: emission_transport_data,
                         backgroundColor: ['#9ac2be', '#f2e3b6', '#f2c299',
-                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979' ],
+                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979', '#8F00FF' ],
     
                         borderWidth: 1,
                         hoverBorderColor: "black",
@@ -189,12 +185,12 @@
         let kms_by_transport_chart = new Chart(kms_by_transport, {
                 type: 'pie',
                 data: {
-                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Walk'],
+                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train', 'Walk'],
                     datasets: [{
                         label: "Income Vs Expenses",
                         data: kms_transport_data,
                         backgroundColor: ['#9ac2be', '#f2e3b6', '#f2c299',
-                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979' ],    
+                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979', '#8F00FF' ],    
                         borderWidth: 1,
                         hoverBorderColor: "black",
                         hoverBorderWidth: 2,

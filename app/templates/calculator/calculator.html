@@ -101,6 +101,20 @@
                 {% endif %}
             </div>
 
+            <div class="form-group" id="passenger-select">
+              {{ form.passengers.label(class="form-control-label") }}
+              {% if form.passengers.errors %}
+                  {{ form.passengers(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.passengers.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.passengers(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+
             </fieldset>
             </br>
             <div class="form-group">

@@ -10,22 +10,16 @@ calculator=Blueprint('calculator',__name__)
 
 #Emissions factor per transport in kg per passemger km
 #Data from: http://efdb.apps.eea.europa.eu/?source=%7B%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%2C%22display_type%22%3A%22tabular%22%7D
-efco2={'Bus':{'Diesel':0.10231,'CNG':0.08,'Petrol':0.10231,'No Fossil Fuel':0},
-    'Car':{'Petrol':0.18592,'Diesel':0.16453,'No Fossil Fuel':0},
-    'Plane':{'Petrol':0.24298},
-    'Ferry':{'Diesel':0.11131, 'CNG':0.1131, 'No Fossil Fuel':0},
-    'Motorbike':{'Petrol':0.09816,'No Fossil Fuel':0},
-    'Scooter':{'No Fossil Fuel':0},
+efco2={'Bus':{'Diesel':0.03,'CNG':0.0285, 'No Fossil Fuel':0.013},
+    'Car':{'Petrol':0.180,'Diesel':0.160, 'Hybrid (gasoline)': 0.100, 'CNG': 0.130, 'No Fossil Fuel':0.026},
+    'Train': {'Diesel': 0.027, 'Biodiesel': 0.014, 'No Fossil Fuel': 0.013}, ##ADD BIODIESEL
+    'Plane':{'Petrol':0.300},
+    'Ferry':{'Diesel':0.019, 'CNG': 0.01425},
+    'Motorbike':{'Petrol':0.200},
+    'Scooter':{'Petrol': 0.100,'No Fossil Fuel':0},
     'Bicycle':{'No Fossil Fuel':0},
     'Walk':{'No Fossil Fuel':0}}
-efch4={'Bus':{'Diesel':2e-5,'CNG':2.5e-3,'Petrol':2e-5,'No Fossil Fuel':0},
-    'Car':{'Petrol':3.1e-4,'Diesel':3e-6,'No Fossil Fuel':0},
-    'Plane':{'Petrol':1.1e-4},
-    'Ferry':{'Diesel':3e-5, 'CNG':3e-5,'No Fossil Fuel':0},
-    'Motorbike':{'Petrol':2.1e-3,'No Fossil Fuel':0},
-    'Scooter':{'No Fossil Fuel':0},
-    'Bicycle':{'No Fossil Fuel':0},
-    'Walk':{'No Fossil Fuel':0}}
+
 
 #Calculator, main page
 @calculator.route('/calculator', methods=['GET','POST'])
@@ -36,18 +30,15 @@ def page():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = form.method.data
+        passengers = form.passengers.data
         # kms = request.form['kms']
         # fuel = request.form['fuel_type']
 
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
+        co2 = float(kms) * (efco2[transport][fuel]/passengers)
 
         co2 = float("{:.2f}".format(co2))
-        ch4 = float("{:.2f}".format(ch4))
-        total = float("{:.2f}".format(total))
 
-        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
+        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, author=current_user)
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('calculator.your_data'))
@@ -57,11 +48,12 @@ def page():
 def get_items():
     method = request.args.get('method')
     items_dict = {
-        'Bus': ['Diesel', 'CNG', 'Petrol', 'No Fossil Fuel'],
-        'Car': ['Petrol', 'Diesel', 'No Fossil Fuel'],
+        'Bus': ['Diesel', 'CNG', 'No Fossil Fuel'],
+        'Car': ['Petrol', 'Diesel', 'Hybrid (gasoline)', 'CNG', 'No Fossil Fuel'],
+        'Train': ['Diesel', 'Biodiesel', 'No Fossil Fuel'],
         'Plane': ['Petrol'],
-        'Ferry': ['Diesel', 'CNG', 'No Fossil Fuel'],
-        'Motorbike': ['Petrol', 'No Fossil Fuel'],
+        'Ferry': ['Diesel', 'CNG'],
+        'Motorbike': ['Petrol'],
         'Scooter': ['Petrol', 'No Fossil Fuel'],
         'Bicycle': ['No Fossil Fuel'],
         'Walk': ['No Fossil Fuel']
@@ -80,10 +72,10 @@ def your_data():
         order_by(Transport.date.desc()).order_by(Transport.transport.asc()).all()
 
 #Emissions by category
-    emissions_by_transport = db.session.query(db.func.sum(Transport.total), Transport.transport). \
+    emissions_by_transport = db.session.query(db.func.sum(Transport.co2), Transport.transport). \
         filter(Transport.date > (datetime.now() - timedelta(days=30))).filter_by(author=current_user). \
         group_by(Transport.transport).order_by(Transport.transport.asc()).all()
-    emission_transport = [0, 0, 0, 0, 0, 0, 0, 0]
+    emission_transport = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     first_tuple_elements = []
     second_tuple_elements = []
     for a_tuple in emissions_by_transport:
@@ -119,12 +111,24 @@ def your_data():
         emission_transport[5]=first_tuple_elements[index_plane]
     else:
         emission_transport[5]
+    
+    if 'Scooter' in second_tuple_elements:
+        index_scooter = second_tuple_elements.index('Scotter')
+        emission_transport[6]=first_tuple_elements[index_scooter]
+    else:
+        emission_transport[6]
+
+    if 'Train' in second_tuple_elements:
+        index_train = second_tuple_elements.index('Train')
+        emission_transport[7]=first_tuple_elements[index_train]
+    else:
+        emission_transport[7]
 
     #Kilometers by category
     kms_by_transport = db.session.query(db.func.sum(Transport.kms), Transport.transport). \
         filter(Transport.date > (datetime.now() - timedelta(days=30))).filter_by(author=current_user). \
         group_by(Transport.transport).order_by(Transport.transport.asc()).all()
-    kms_transport = [0, 0, 0, 0, 0, 0, 0, 0]
+    kms_transport = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     first_tuple_elements = []
     second_tuple_elements = []
     for a_tuple in kms_by_transport:
@@ -171,16 +175,22 @@ def your_data():
         index_scooter = second_tuple_elements.index('Scooter')
         kms_transport[6]=first_tuple_elements[index_scooter]
     else:
-        kms_transport[6]     
+        kms_transport[6]   
+
+    if 'Train' in second_tuple_elements:
+        index_train = second_tuple_elements.index('Train')
+        kms_transport[7]=first_tuple_elements[index_train]
+    else:
+        kms_transport[7]   
 
     if 'Walk' in second_tuple_elements:
         index_walk = second_tuple_elements.index('Walk')
-        kms_transport[7]=first_tuple_elements[index_walk]
+        kms_transport[8]=first_tuple_elements[index_walk]
     else:
-        kms_transport[7]    
+        kms_transport[8]    
 
     #Emissions by date (individual)
-    emissions_by_date = db.session.query(db.func.sum(Transport.total), Transport.date). \
+    emissions_by_date = db.session.query(db.func.sum(Transport.co2), Transport.date). \
         filter(Transport.date > (datetime.now() - timedelta(days=30))).filter_by(author=current_user). \
         group_by(Transport.date).order_by(Transport.date.asc()).all()
     over_time_emissions = []
