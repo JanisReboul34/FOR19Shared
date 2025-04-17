@@ -28,14 +28,14 @@ h1 {
 }
 /* Two buttons on home page*/ 
 .custom-btn {
-    background-color: #568c63; /* green */
+    background-color: #568c63; 
     color: white;
     border: white;
     padding: 10px 30px;
     border-radius: 100px;
 }
 .custom-btn2 {
-    background-color: #466fa6; /* blue */
+    background-color: #466fa6; 
     color: white;
     border: white;
     padding: 10px 30px;
@@ -48,7 +48,7 @@ body {
 
   /* making the transparent background*/ 
   .hero-overlay {
-    background-color: rgba(86, 140, 99, 0.1); /* your #568c63 green with 40% opacity */
+    background-color: rgba(86, 140, 99, 0.1);
     padding: 2rem;
     border-radius: 30px;
     text-align: center;
@@ -57,7 +57,7 @@ body {
   }
   
   .btn-solid {
-    background-color: #568c63; /* solid green */
+    background-color: #568c63;
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -70,9 +70,6 @@ body {
   }
   
   .btn-solid:hover {
-    background-color: rgba(86, 140, 99, 0.4); /* lighter green (semi-transparent) */
-    color: #000; /* optional:*/
+    background-color: rgba(86, 140, 99, 0.4);
+    color: #000; 
 }
- 
-
-

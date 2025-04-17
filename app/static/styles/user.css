@@ -12,8 +12,10 @@ body {
     margin: 80px auto;
     padding: 40px; 
     background-color: rgba(255, 255, 255, 0); /* Om du vil ha vekk boksen slett linje 15 og 16 */
+    /* backdrop-filter: blur(5px);  Lager blur */
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #fff
 }
 
 /* Buttons */
@@ -29,20 +31,16 @@ body {
     cursor: pointer;
 }
 
-.login-btn {
-    transition: background-color 0.3s ease;
-}
-
 @media screen and (max-width: 768px) {
     .register_section_css .container {
-      width: 90%; /* Bruk mesteparten av mobilskjermen */
+      width: 90%;
       margin: 40px auto;
       padding: 20px;
       border-radius: 10px;
     }
   
     .login-btn {
-      width: 100%; /* Knappen fyller hele bredden */
+      width: 100%;
     }
   
     .form-group {
