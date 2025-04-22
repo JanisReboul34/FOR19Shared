@@ -113,7 +113,7 @@ def your_data():
         emission_transport[5]
     
     if 'Scooter' in second_tuple_elements:
-        index_scooter = second_tuple_elements.index('Scotter')
+        index_scooter = second_tuple_elements.index('Scooter')
         emission_transport[6]=first_tuple_elements[index_scooter]
     else:
         emission_transport[6]
