@@ -7,6 +7,5 @@ def page():
 
 @methodology.route('/downloadPaper')
 def download ():
-    #For windows you need to use drive name [ex: F:/Example.pdf]
-    path = "./static/downloadable/Essay Green App.pdf"
+    path = "./static/downloadable/Carbon-App-Paper-Group-3-2025.pdf"
     return send_file(path, as_attachment=True)
