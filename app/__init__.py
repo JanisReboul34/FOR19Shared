@@ -7,10 +7,10 @@ import os
 application = Flask(__name__)
 
 # application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
-application.config['SECRET_KEY'] = '9240d4b7a0f0f659e11c060f4825a51ecc3323cf2e99fdc4'
-
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
-application.config['SQLALCHEMY_BINDS'] ={'transport': 'sqlite:///transport.db'}
+application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
+DBVAR = f"postgresql://{os.environ['RDS_USERNAME']}:{os.environ['RDS_PASSWORD']}@{os.environ['RDS_HOSTNAME']}/{os.environ['RDS_DB_NAME']}"
+application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
+application.config['SQLALCHEMY_BINDS'] ={'transport': DBVAR}
 
 db = SQLAlchemy(application)
 bcrypt = Bcrypt(application)
